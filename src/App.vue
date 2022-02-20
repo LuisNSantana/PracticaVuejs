@@ -1,17 +1,20 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <ciclo-de-vida></ciclo-de-vida>
+  <ping-when-mounted></ping-when-mounted>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CicloDeVida from "./components/CicloDeVida.vue";
+import PingWhenMounted from "./components/PingWhenMounted.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    CicloDeVida,
+    PingWhenMounted,
+  },
+};
 </script>
 
 <style>
