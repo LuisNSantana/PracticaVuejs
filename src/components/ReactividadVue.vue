@@ -25,14 +25,21 @@
 
     <div>
     <div 
+    
     v-for="(item, id) in coinsFull"
-     :key="id" 
-     :label="item.name"
-     > {{id}} = {{item.name}} {{item.symbol}}  </div>
+     :key="id"
+     > {{id}} = {{item.data.name}} {{item.data.symbol}}{{item.data.market_data.current_price.usd}}
+     
+    
+    <img :src="item.data.image.thumb" alt="img">
+     </div>
+
+
   </div>
-</template>
-    
-    
+
+  </template>
+
+  
 
 
 
@@ -53,6 +60,8 @@ export default {
 
   mounted() {
     this.getCoinList();
+    
+    
    
     
   },
@@ -83,6 +92,8 @@ export default {
        let aux = this;
 
        aux.coinsFull.push(this.coinInfo)
+
+       console.log('AQUI TOYYYYYY', this.coinsFull)
        
        
     }
