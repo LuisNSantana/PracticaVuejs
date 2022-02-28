@@ -28,11 +28,34 @@
     
     v-for="(item, id) in coinsFull"
      :key="id"
-     > {{id}} = {{item.data.name}} {{item.data.symbol}}{{item.data.market_data.current_price.usd}}
-     
-    
+     > 
+     {{id}} = {{item.data.name}} {{item.data.symbol}}{{item.data.market_data.current_price.usd}}
     <img :src="item.data.image.thumb" alt="img">
      </div>
+    <el-table
+    :data="coinsFull"
+    border
+    style="width: 100%">
+    <el-table-column
+      prop="data.name"
+      label="Nombre"
+      width="180">
+    </el-table-column>
+    <el-table-column
+      prop="data.symbol"
+      label="Simbolo"
+      width="180">
+    </el-table-column>
+     <el-table-column
+      prop="data.market_data.current_price.usd"
+      label="Precio"
+      width="180">
+      <strong :class="$style.price">{{ coinPrice }}</strong>
+
+    </el-table-column>
+     
+  </el-table>
+     
 
 
   </div>
@@ -44,6 +67,7 @@
 
 
 <script>
+
 export default {
   data() {
     return {
@@ -52,7 +76,8 @@ export default {
       coinPrice: null,
       coins: [],
       base: "https://api.coingecko.com/api/v3",
-      coinsFull:[]
+      coinsFull:[],
+      
       
       
     };
