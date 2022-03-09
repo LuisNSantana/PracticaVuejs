@@ -22,52 +22,36 @@
   </div>
 
   <p><el-button type="primary" @click="getCoinPush">AÑADIR</el-button></p>
-
-    <div>
-    <div 
-    
-    v-for="(item, id) in coinsFull"
-     :key="id"
-     > 
-     {{id}} = {{item.data.name}} {{item.data.symbol}}{{item.data.market_data.current_price.usd}}
-    <img :src="item.data.image.thumb" alt="img">
-     </div>
-    <el-table
-    :data="coinsFull"
-    border
-    style="width: 100%">
-    <el-table-column
-      prop="data.name"
-      label="Nombre"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="data.symbol"
-      label="Simbolo"
-      width="180">
-    </el-table-column>
-     <el-table-column
-      prop="data.market_data.current_price.usd"
-      label="Precio"
-      width="180">
-      <strong :class="$style.price">{{ coinPrice }}</strong>
-
-    </el-table-column>
-     
-  </el-table>
-     
-
-
+  <div>
+    <div v-for="(item, id) in coinsFull" :key="id">
+      {{ id }} = {{ item.data.name }} {{ item.data.symbol
+      }}{{ item.data.market_data.current_price.usd }}
+      <img :src="item.data.image.thumb" alt="img" />
+    </div>
+    <el-table :data="coinsFull" border style="width: 100%">
+      <el-table-column prop="data.name" label="Nombre" width="180">
+      </el-table-column>
+      <el-table-column prop="data.symbol" label="Simbolo" width="180">
+      </el-table-column>
+      <el-table-column
+        prop="data.market_data.current_price.usd"
+        label="Precio"
+        width="180"
+      >
+        <strong :class="$style.price">{{ coinPrice }}</strong>
+      </el-table-column>
+      <el-table-column label="Date" width="180">
+        <template>
+          <div>
+            <img :src="coinsFull[0].data.image.thumb" alt="img" />
+          </div>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
-
-  </template>
-
-  
-
-
+</template>
 
 <script>
-
 export default {
   data() {
     return {
@@ -76,19 +60,12 @@ export default {
       coinPrice: null,
       coins: [],
       base: "https://api.coingecko.com/api/v3",
-      coinsFull:[],
-      
-      
-      
+      coinsFull: [],
     };
   },
 
   mounted() {
     this.getCoinList();
-    
-    
-   
-    
   },
 
   methods: {
@@ -97,8 +74,6 @@ export default {
 
       if (result) {
         this.coins = result.data;
-
-        
       }
     },
 
@@ -108,21 +83,15 @@ export default {
       if (result) {
         this.coinInfo = result;
         this.coinPrice = result?.data?.market_data?.current_price?.usd;
-        
-        
       }
     },
-    async getCoinPush(){
-       
-       let aux = this;
+    async getCoinPush() {
+      let aux = this;
 
-       aux.coinsFull.push(this.coinInfo)
+      aux.coinsFull.push(this.coinInfo);
 
-       console.log('AQUI TOYYYYYY', this.coinsFull)
-       
-       
-    }
-    
+      console.log("AQUI TOYYYYYY", this.coinsFull);
+    },
   },
 };
 </script>
